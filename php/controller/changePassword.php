@@ -4,11 +4,12 @@ ini_set("SMTP", "smtp.gmail.com");
 ini_set("sendmail_from", "yamori2708@gmail.com");
 ini_set("smtp_port", "465");
 
-$resetLink = "192.168.28.194/logins/changePassword.php";
+
 include "../../db.php";
 include "../class/user.php";
 
 $email = $_POST['email'];
+$password = $_POST['password'];
 
 
 // creacion del objeto usuarios

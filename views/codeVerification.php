@@ -10,25 +10,21 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center">Codigo de verificacion</h2>
-        <form id="loginForm">
+        <h2 class="text-center">validacion codigo de verificacion</h2>
+        <form id="loginForm" method="POST" action="../php/controller/checkCode.php">
             <div class="form-group">
-                <label for="codeToken">Ingresa el codigo de verificacion:</label>
-                <input type="text" class="form-control" id="codeToken" name="codeToken" required>
+                <label for="tokenCode">Ingresa el codigo de verificacion:</label>
+                <input type="text" class="form-control" id="tokenCode" name="tokenCode" required>
+                <input type="hidden" name="email" id="email" value="<?php echo $_GET['email']; ?>">
             </div>
             
-            <div class="form-group">
-                <div class="g-recaptcha" data-sitekey="6Lel0zIqAAAAAJ4Lj8KIxWUQOCKG1Y-ga7nrgD9y"></div>
-            </div>
-            <button type="submit" class="btn btn-success">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-success">Validar</button>
         </form>
         <br><br>
-        <a href="registro.php">Registrarse</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.13.0/sweetalert2.all.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="js/script.js"></script>
 </body>
 </html>
