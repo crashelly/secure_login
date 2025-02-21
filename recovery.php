@@ -11,7 +11,7 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center">Recuperar contraseña</h2>
-        <form id="loginForm" method="post" action="php/controller/sendEmail.php">
+        <form id="" method="post" action="php/controller/sendEmail.php">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="text" class="form-control" id="email" name="email" required>
@@ -25,10 +25,10 @@
                     </div>
                 </div>
             </div> -->
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <div class="g-recaptcha" data-sitekey="6Lel0zIqAAAAAJ4Lj8KIxWUQOCKG1Y-ga7nrgD9y"></div>
-            </div> -->
-            <button type="submit" class="btn btn-success">Recuperar</button>
+            </div>
+            <button type="submit" class="">Recuperar</button>
         </form>
         <br><br>
         <a href="registro.php">Registrarse</a>
