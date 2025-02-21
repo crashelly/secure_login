@@ -4,7 +4,9 @@ ini_set("SMTP", "smtp.gmail.com");
 ini_set("sendmail_from", "yamori2708@gmail.com");
 ini_set("smtp_port", "465");
 
-$resetLink = "192.168.28.194/logins/changePassword.php";
+include "../../db.php";
+include "../class/user.php";
+
 
 
 function generarCodigoAleatorio()
@@ -14,24 +16,25 @@ function generarCodigoAleatorio()
 }
 try {
   $codeToken = generarCodigoAleatorio();
-
-  echo $codeToken;
+  
   // $to ='yamori2708@gmail.com' ;
-  $to = 'sofi@gmail.com';
+  // $to = 'colchondeSpam@gmail.com';
   $to = $_POST['email'];
+  
+  $user = new ProgramUser($pdo, $to);
 
-
-  include "../../db.php";
   // guarda el codigo en la base de datos
-  $query = $pdo->prepare("UPDATE usuarios SET verificationCode = :tokenCode WHERE email = :email");  $var  = 9999;
+  $query = $pdo->prepare("UPDATE usuarios SET verificationCode = :tokenCode WHERE email = :email");
 
-  $query->execute(array(
-    ':tokenCode'=> $codeToken,
+  $query->execute([
+    ':tokenCode' => $codeToken,
     ':email' => $to
-  ));
+  ]);
 
+
+ 
   // redirije a la pagina donde checkea  el codigo
-  $user->redirect("'../../views/codeVerification.php?email=$to'");
+  $user->redirect("../../views/codeVerification.php?email=$to");
 } catch (\Throwable $e) {
   echo $e->getMessage();
 }
