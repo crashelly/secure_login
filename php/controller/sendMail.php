@@ -31,8 +31,12 @@ try {
     ':email' => $to
   ]);
 
+// =========================  SEND THE EMAIL ======================
 
- 
+//  ========================= FINAL OF THE SEND OF THE EMAIL =============
+// }
+
+//  echo $codeToken;
   // redirije a la pagina donde checkea  el codigo
   $user->redirect("../../views/codeVerification.php?email=$to");
 } catch (\Throwable $e) {
