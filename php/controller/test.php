@@ -5,36 +5,28 @@ ini_set("sendmail_from", "yamori2708@gmail.com");
 ini_set("smtp_port", "465");
 
 $resetLink = "192.168.28.194/logins/changePassword.php";
+include "../../db.php";
 
+$email = $_POST['email'];
 
-function generarCodigoAleatorio()
-{
-  $codigo = rand(1000, 9999);
-  return $codigo;
-}
 try {
-  $codeToken = generarCodigoAleatorio();
-
-  echo $codeToken;
-  // $to ='yamori2708@gmail.com' ;
   $to = 'sofi@gmail.com';
-
-
-  include "../../db.php";
-  // guarda el codigo en la base de datos
-  $query = $pdo->prepare("UPDATE usuarios SET verificationCode = :tokenCode WHERE email = :email");  $var  = 9999;
-  // binds the parameters for security
-  // $query->bindParam(':token',$var, PDO::PARAM_INT);
-  // $query->bindParam(':email', $to, PDO::PARAM_STR);
+  $to = 'sofi@gmail.com';
+  $query = "SELECT ChekedTokenCode FROM usuarios WHERE email =:email";
+  $query = $pdo->prepare($query);
+  $query->bindParam(':email', $email, PDO::PARAM_STR);
+  $query->execute();
+  $result = $query->fetch(PDO::FETCH_ASSOC);
+  $codeToken = $result['ChekedTokenCode'];
   
+  if ($codeToken == "0") {
+    # code...
+    echo $codeToken;
+  }else{
+    echo "<script>window.location.href = '../../views/changePassword.php?email=$email';</script>";
+  }
 
-  $query->execute(array(
-    ':tokenCode'=> $codeToken,
-    ':email' => $to
-  ));
-
-  // redirije a la pagina donde checkea  el codigo
-  header("Location :../../views/codeVerification.php ");
+  
 } catch (\Throwable $e) {
   echo $e->getMessage();
 }
