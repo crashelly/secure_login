@@ -12,7 +12,6 @@
     <div class="container mt-5">
         <h2 class="text-center">Codigo de verificacion</h2>
         <form id="loginForm">
-            <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
             <div class="form-group">
                 <label for="codeToken">Ingresa el codigo de verificacion:</label>
                 <input type="text" class="form-control" id="codeToken" name="codeToken" required>

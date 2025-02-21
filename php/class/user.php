@@ -45,7 +45,12 @@ class ProgramUser{
 
     #funcion de redireccion
     public function redirect($path){
-        echo "<script>window.location.href = '$path';</script>";
+        try{
+            echo "<script>window.location.href = '$path';</script>";
+            // header("Location: $path");
+        }catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
     }
 }
 

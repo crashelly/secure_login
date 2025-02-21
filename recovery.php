@@ -11,7 +11,7 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center">Recuperar contraseña</h2>
-        <form  method="post" action="php/controller/sendEmail.php">
+        <form  method="post" action="php/controller/sendMail.php">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="text" class="form-control" id="email" name="email" required>
