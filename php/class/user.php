@@ -43,6 +43,17 @@ class ProgramUser{
         $query->execute();
     }
 
+ 
+    public function setPassword($password){
+        $password_hash = password_hash($password, PASSWORD_BCRYPT);
+        $query = "UPDATE usuarios SET password_hash =:password,ChekedTokenCode = 0 WHERE email =:email";
+        $query = $this->pdo->prepare($query);
+        
+        $query->bindParam(':password', $password_hash, PDO::PARAM_STR);
+        $query->bindParam(':email', $this->email, PDO::PARAM_STR);
+        $query->execute();
+    }
+
     #funcion de redireccion
     public function redirect($path){
         try{
@@ -51,6 +62,11 @@ class ProgramUser{
         }catch (\Throwable $th) {
             echo $th->getMessage();
         }
+    }
+
+    public function alerta($messagge){
+        echo "<script>alert('$messagge');</script>";
+        // header("Location: ../../index.php");
     }
 }
 

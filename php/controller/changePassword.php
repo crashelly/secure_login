@@ -14,23 +14,34 @@ $password = $_POST['password'];
 
 // creacion del objeto usuarios
 $user = new ProgramUser($pdo, $email);
+#si envio los datos del formulario
+if (isset($_POST['email']) && isset($_POST['password'])) {
+  try {
+    // si es 1 ya el token se verifico
+    if ($user->checkBooleanCheckedCode()) {
+      $user->setPassword($password);
+      $user->alerta("contraseña cambiada exitosamente");
+      sleep(2);
+      $user->redirect("../../index.php");
 
-try {
-  // si es 1 ya el token se verifico
-  if ($user->checkBooleanCheckedCode()) {
-    #redirecciona a la pagina de cambio de contraseña
-
-    #inicia sesion y guarda el true
-    session_start();
-    $_SESSION['changePassword'] = true;
-
-    $user->redirect("'../../views/changePassword.php?email='.$email.'");
-  } else {
-    $user->redirect("'../../index.php'");
+      exit();
+  
+    } else {
+      $user->alerta("UPS...");
+      $user->redirect("../../index.php");
+      exit();
+    }
+  } catch (\Throwable $e) {
+    echo $e->getMessage();
+    exit();
   }
-} catch (\Throwable $e) {
-  echo $e->getMessage();
+  
+}else{
+  $user->alerta("llene todos los campos");
+  $user->redirect("'../../views/changePassword.php'");
+  exit();
 }
+
 // =============================================================
 
 
