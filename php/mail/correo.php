@@ -4,7 +4,7 @@ if(isset($_POST['enviar'])){
         $name = "yisus";
         $asunto = "importa";
         $msg = "quele";
-        $email = "colchondespam@gmail.com";
+        $email = "colchondeSpam@gmail.com";
         $header = "From: noreply@example.com". "\r\n";
         $header.= "Reply-To: noreply@example.com". "\r\n";
         $header.="X-Mailer: PHP/". phpversion(); 

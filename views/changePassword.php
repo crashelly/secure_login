@@ -1,3 +1,14 @@
+<?php include '../db.php'; include '../php/class/user.php';
+$user = new ProgramUser($pdo, $_GET['email']);
+if (!$user->checkBooleanCheckedCode()) {+
+    $user->alerta("UPS...");
+    $user->redirect("../index.php");
+    exit();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,7 +36,7 @@
             <div class="form-group">
                 <div class="g-recaptcha" data-sitekey="6Lel0zIqAAAAAJ4Lj8KIxWUQOCKG1Y-ga7nrgD9y"></div>
             </div>
-            <button type="submit" class="btn btn-success">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-success">Cambiar contraseña</button>
         </form>
         <br><br>
         <a href="registro.php">Registrarse</a>
